@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cream: #FFF8F0;
+    --cream-dark: #F5E6D3;
+    --saffron: #FF9933;
+    --saffron-light: #FFB347;
+    --deep-orange: #E65C00;
+    --brown: #4A2C0A;
+    --gold: #D4A017;
+  }
+}
+
+.sanskrit-pattern {
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255,153,51,0.05) 2%, transparent 0%),
+    radial-gradient(circle at 75px 75px, rgba(212,160,23,0.05) 2%, transparent 0%);
+  background-size: 100px 100px;
+}
+
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.dark .glass {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #E65C00, #FF9933, #D4A017);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #FF9933; border-radius: 3px; }
