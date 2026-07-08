@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import Input from '@/components/ui/Input';
@@ -8,7 +8,7 @@ import { Lock } from 'lucide-react';
 import { toast } from '@/components/ui/Toaster';
 import { motion } from 'framer-motion';
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const params = useSearchParams();
   const router = useRouter();
   const [password, setPassword] = useState('');
@@ -37,5 +37,13 @@ export default function ResetPasswordPage() {
         </div>
       </div>
     </motion.div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="text-center text-gray-400">Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
   );
 }
