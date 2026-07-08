@@ -7,7 +7,7 @@ import { addDays } from 'date-fns';
 
 const PLAN_DAYS: Record<string, number> = { monthly: 30, yearly: 365, lifetime: -1 };
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const session = await auth();
     if (!session || (session.user as any)?.role !== 'admin') {
@@ -16,8 +16,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
     await dbConnect();
     const { action, rejectionReason } = await req.json();
+    const { id } = await params;
 
-    const payment = await PaymentModel.findById(params.id);
+    const payment = await PaymentModel.findById(id);
     if (!payment) return NextResponse.json({ message: 'Payment not found' }, { status: 404 });
 
     if (action === 'approve') {
