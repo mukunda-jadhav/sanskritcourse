@@ -3,10 +3,13 @@ import { auth } from '@/lib/auth';
 import dbConnect from '@/lib/mongodb';
 import NoteModel from '@/models/Note';
 
-export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if ((session?.user as any)?.role !== 'admin') return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  
   await dbConnect();
-  await NoteModel.findByIdAndDelete(params.id);
+  const { id } = await params;
+  await NoteModel.findByIdAndDelete(id);
+  
   return NextResponse.json({ message: 'Deleted' });
 }
