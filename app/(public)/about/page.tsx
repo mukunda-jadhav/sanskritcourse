@@ -41,7 +41,7 @@ export default function AboutPage() {
             <p className="text-amber-200 mb-5">Join 10,000+ learners exploring the beauty of Sanskrit</p>
             <div className="flex justify-center gap-3">
               <Link href="/membership"><Button className="bg-white text-orange-700 hover:bg-amber-50">Get Started</Button></Link>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer">
+              <a href="https://youtube.com/@PratikshaSanskritAcademy" target="_blank" rel="noreferrer">
                 <Button variant="outline" className="border-white/40 text-white hover:bg-white/10">
                   <Youtube className="h-4 w-4" /> YouTube
                 </Button>

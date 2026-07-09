@@ -38,7 +38,7 @@ export default function Footer() {
               Learn Sanskrit from basics to mastery. Explore grammar, shlokas, Bhagavad Gita, Upanishads and more.
             </p>
             <div className="flex gap-3">
-              <a href="https://youtube.com" target="_blank" rel="noreferrer"
+              <a href="https://youtube.com/@PratikshaSanskritAcademy" target="_blank" rel="noreferrer"
                 className="p-2 rounded-lg bg-amber-900 hover:bg-red-600 transition-colors">
                 <Youtube className="h-4 w-4" />
               </a>

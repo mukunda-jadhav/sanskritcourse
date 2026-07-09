@@ -17,7 +17,7 @@ export default function YouTubeSection() {
             <Youtube className="h-20 w-20 text-red-500 mx-auto mb-4" />
             <p className="text-gray-600 dark:text-gray-400">Subscribe to our YouTube channel for free Sanskrit lessons</p>
           </div>
-          <a href="https://youtube.com" target="_blank" rel="noreferrer">
+          <a href="https://youtube.com/@PratikshaSanskritAcademy" target="_blank" rel="noreferrer">
             <Button size="lg">
               <Youtube className="h-5 w-5 text-red-500" />
               Subscribe on YouTube

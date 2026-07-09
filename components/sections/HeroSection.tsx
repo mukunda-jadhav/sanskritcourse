@@ -41,7 +41,7 @@ export default function HeroSection() {
                   Start Learning
                 </Button>
               </Link>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer">
+              <a href="https://youtube.com/@PratikshaSanskritAcademy" target="_blank" rel="noreferrer">
                 <Button variant="outline" size="lg">
                   <Play className="h-5 w-5 fill-current" />
                   Watch on YouTube
