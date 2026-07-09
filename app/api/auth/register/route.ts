@@ -18,10 +18,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Email already registered' }, { status: 409 });
     }
 
-    const hashed = await bcrypt.hash(password, 12);
+    const hashed = await bcrypt.hash(password, 10);
     const isAdmin = email === process.env.ADMIN_EMAIL;
 
-    await UserModel.create({
+    const user = await UserModel.create({
       name,
       email,
       password: hashed,
@@ -29,9 +29,11 @@ export async function POST(req: NextRequest) {
       role: isAdmin ? 'admin' : 'student',
     });
 
+    console.log('User created:', user._id);
+
     return NextResponse.json({ message: 'Account created successfully' }, { status: 201 });
   } catch (err) {
-    console.error(err);
+    console.error('Register error:', err);
     return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }
 }

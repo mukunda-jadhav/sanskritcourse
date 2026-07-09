@@ -28,17 +28,14 @@ export default function RegisterPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormData) => {
-    try {
-      await axios.post('/api/auth/register', { name: data.name, email: data.email, password: data.password });
-      const res = await signIn('credentials', { email: data.email, password: data.password, redirect: false });
-      if (res?.ok) {
-        toast('Account created! Welcome to Sanskrit Gurukul', 'success');
-        router.push('/dashboard');
-      }
-    } catch (err: any) {
-      toast(err.response?.data?.message || 'Registration failed', 'error');
-    }
-  };
+  try {
+    await axios.post('/api/auth/register', { name: data.name, email: data.email, password: data.password });
+    toast('Account created! Please login.', 'success');
+    router.push('/login');
+  } catch (err: any) {
+    toast(err.response?.data?.message || 'Registration failed', 'error');
+  }
+};
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
