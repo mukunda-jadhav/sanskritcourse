@@ -26,14 +26,14 @@ function LoginContent() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormData) => {
-    const res = await signIn('credentials', { ...data, redirect: false });
-    if (res?.ok) {
-      toast('Welcome back!', 'success');
-      router.push(params.get('callbackUrl') || '/dashboard');
-    } else {
-      toast('Invalid email or password', 'error');
-    }
-  };
+  const res = await signIn('credentials', { ...data, redirect: false });
+  if (res?.ok) {
+    toast('Welcome back!', 'success');
+    window.location.href = '/dashboard';
+  } else {
+    toast('Invalid email or password', 'error');
+  }
+};
 
   const handleGoogle = async () => {
     setGoogleLoading(true);

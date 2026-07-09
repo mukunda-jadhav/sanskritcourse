@@ -19,15 +19,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
-
         await dbConnect();
         const user = await UserModel.findOne({ email: credentials.email }).select('+password');
-
         if (!user || !user.password) return null;
-
         const isValid = await bcrypt.compare(credentials.password as string, user.password);
         if (!isValid) return null;
-
         return {
           id: user._id.toString(),
           name: user.name,
@@ -72,6 +68,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.role = token.role as string;
       }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      if (url.startsWith(baseUrl)) return url;
+      return `${baseUrl}/dashboard`;
     },
   },
   pages: {
